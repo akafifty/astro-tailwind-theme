@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+ 
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: all 1s ease !important;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, visibility !important;
+  transition-delay: 0 !important;
+}
+

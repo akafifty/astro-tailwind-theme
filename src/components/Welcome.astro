@@ -1,0 +1,76 @@
+---
+import "../styles/global.css";
+import ThemeToggle from "./ThemeToggle.astro";
+---
+
+<main class="absolute z-10 max-w-3xl mx-auto p-8">
+    <header class="flex justify-between items-center mb-8">
+        <h1 class="text-2xl font-bold text-gray-800 dark:text-white">
+            Theme Switcher
+        </h1>
+        <ThemeToggle />
+    </header>
+
+    <section
+        class="p-6 rounded-lg shadow-lg space-y-6
+        backdrop-blur-sm bg-white/40 dark:bg-gray-800/40"
+    >
+        <p class="text-gray-700 dark:text-gray-300">
+            This is a demo of theme switching with Astro and Tailwind CSS.
+        </p>
+        <p class="text-gray-600 dark:text-gray-400">
+            Theme : <span
+                class="font-medium text-gray-900 dark:text-white"
+                id="theme-display"></span>
+        </p>
+        <p class="text-gray-800 dark:text-white">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text
+            ever since the 1500s, when an unknown printer took a galley of type
+            and scrambled it to make a type specimen book. It has survived not
+            only five centuries, but also the leap into electronic typesetting,
+            remaining essentially unchanged. It was popularised in the 1960s
+            with the release of Letraset sheets containing Lorem Ipsum passages,
+            and more recently with desktop publishing software like Aldus
+            PageMaker including versions of Lorem Ipsum.
+        </p>
+    </section>
+</main>
+
+<script>
+    const updateThemeUI = () => {
+        const themeDisplay = document.getElementById("theme-display");
+        const dayImg = document.getElementById("day-img");
+        const nightImg = document.getElementById("night-img");
+
+        const isDark = document.documentElement.classList.contains("dark");
+
+        if (themeDisplay) {
+            themeDisplay.textContent = isDark ? "Dark" : "Light";
+        }
+
+        if (dayImg && nightImg) {
+            if (isDark) {
+                dayImg.classList.add("opacity-0", "invisible");
+                dayImg.classList.remove("opacity-100", "visible");
+                nightImg.classList.add("opacity-100", "visible");
+                nightImg.classList.remove("opacity-0", "invisible");
+            } else {
+                dayImg.classList.add("opacity-100", "visible");
+                dayImg.classList.remove("opacity-0", "invisible");
+                nightImg.classList.add("opacity-0", "invisible");
+                nightImg.classList.remove("opacity-100", "visible");
+            }
+        }
+    };
+
+    document.addEventListener("DOMContentLoaded", () => {
+        updateThemeUI();
+
+        const observer = new MutationObserver(updateThemeUI);
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+    });
+</script>
