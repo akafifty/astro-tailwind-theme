@@ -1,6 +1,7 @@
 # Astro + Tailwind
 
-<video src="https://github.com/akafifty/astro-tailwind-theme/blob/main/public/video.mp4?raw=true" controls width="700"></video>
+### Demo
+![Demo del proyecto](https://github.com/akafifty/astro-tailwind-theme/blob/main/public/demo.gif?raw=true)
 
 ## 🧞 Commands
 
